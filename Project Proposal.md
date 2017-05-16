@@ -1,22 +1,11 @@
-#Project Proposal
+# Project Proposal
 
-##Project Description
-Question: What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.
-Dataset: Globally Earthquake Catalog 
-Data collected by: International Federation of Digital Seismograph Networks (FDSN), a global organization that is responsible for installation and maintenance of seismographs globally
-Data can be accessed from USFS United Geological Survey 
-Who is your target audience?  Depending on the domain of your data, there may be a variety of audiences interested in using the dataset.  You should hone in on one of these audiences
-Government 
-Scientists who study earthquake and seismic movements
-What does your audience want to learn from your data?  Please list out at least 3 specific questions that your project will answer for your audience.events with depth less than the specified maximum.
-Where do those red-alert level and earthquake occurs within this 10 years?
-Where do those earthquakes that have depths that has more than 300 km located?
-Where do earthquake occur most frequently?
+## Project Description
+We are using Globally Earthquake Catalog dataset that is collected by International Federation of Digital Seismograph Networks (FDSN), a global organization that is responsible for international installation and maintenance of seismographs. It can be assessed from the USFS United Geological Survey. Our target audience is government and scientists who study earthquake and seismic movements. Questions that they may posed: Where do those red-alert level earthquake occur within these 10 years? Where do those earthquakes that have depths that has more than 300 km located? And what location do earthquakes occur most frequently?
 
+## Technical Description
 
-##Technical Description
-
-	This project will take the form of a responsive website with the use of Shiny, allowing for the user to interact with the data visualizations. This website will have many pages, each one displaying a different relationship within the data. As the USGS Earthquake API is frequently update, an ambitious goal is to make the website continuously update in response to newest information. We will be using geoJson format and filtering for `eventtypes` of ÅgearthquakeÅh. Our base reshaping of our api is shown below:
+This project will take the form of a responsive website with the use of Shiny, allowing for the user to interact with the data visualizations. This website will have many pages, each one displaying a different relationship within the data. As the USGS Earthquake API is frequently update, an ambitious goal is to make the website continuously update in response to newest information. We will be using geoJson format and filtering for `eventtypes` of earthquakes. Our base reshaping of our api is shown below:
 
 ```
 base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
