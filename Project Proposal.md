@@ -18,4 +18,3 @@ Some major libraries include ggplot2, plotly, knitr, httr, jsonlite, and perhaps
 
 [Github Repository](https://github.com/ericjwei/Lightly-Sauteed-Vegetables)
 
-
