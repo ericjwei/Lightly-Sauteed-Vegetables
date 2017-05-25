@@ -8,13 +8,15 @@ map.panel <- tabPanel('Map')
 scatter.panel <- tabPanel('Scatter')
 
 
+bar.panel <- tabPanel('Bar')
+
 
 # Define UI for application that draws a histogram
 shinyUI(
   navbarPage(
     theme = shinythemes::shinytheme("sandstone"),
     'USGS Earthquake Monitoring', 
-    map.panel, scatter.panel))
+    map.panel, scatter.panel, bar.panel))
   
 #   fluidPage(
 #   
