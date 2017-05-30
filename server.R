@@ -10,7 +10,7 @@ library(dplyr)
 #"not_reported","nuclear explosion","nuclear_explosion","other event","other_event","quarry",
 #"quarry blast","quarry_blast","rock burst","rockslide","rock_burst","snow_avalanche","sonic boom","sonicboom","sonic_boom"]
 
-
+source('./scripts/TypeOfEvent.r')
 
 base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" 
 var <- "&eventtype=explosion" 
@@ -20,16 +20,7 @@ data <- fromJSON(content(response, "text"))$features %>% flatten()
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
-  # output$distPlot <- renderPlot({
-  #   
-  #   # generate bins based on input$bins from ui.R
-  #   x    <- faithful[, 2] 
-  #   bins <- seq(min(x), max(x), length.out = input$bins + 1)
-  #   
-  #   # draw the histogram with the specified number of bins
-  #   hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  #   
-  # })
-  
+   output$scatter <- renderPlotly({
+     return(BuildScatter(input$type, input$dates, input$num))
+   })
 })
