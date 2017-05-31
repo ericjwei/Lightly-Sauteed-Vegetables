@@ -21,6 +21,6 @@ data <- fromJSON(content(response, "text"))$features %>% flatten()
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    output$scatter <- renderPlotly({
-     return(BuildScatter(input$type, input$dates, input$num))
+     return(BuildScatter(input$type, input$startDate, input$num))
    })
 })
