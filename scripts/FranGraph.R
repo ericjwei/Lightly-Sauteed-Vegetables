@@ -1,7 +1,7 @@
 library(plotly)
 library(shiny)
 library(dplyr)
-library(RJSONIO)
+#library(RJSONIO)
 library(jsonlite)
 library(httr)
 
