@@ -12,9 +12,9 @@ map.panel <- tabPanel('Map')
 
 eventtype = list("Chemical Explosion" = "Chemical Explosion",
                  "Earthquake" = "Earthquake",
-                 "Explosion" = "Explosion",
+                 "Explosion*" = "Explosion",
                  "Ice Quake" = "Ice Quake",
-                 "Quarry Blast" = "Quary Blast"
+                 "Quarry Blast" = "Quarry Blast"
                  )
 
 scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitude by Source'),
@@ -22,14 +22,17 @@ scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitu
                             sidebarPanel(
                               radioButtons("type", label = h3("Source Type"),
                                            choices = eventtype, selected = "Earthquake"),
+                              helpText(h5("*Large data points may result in longer plot times")),
                               dateInput("startDate", label = h3("Start date of 30 day range"),
-                                          value = as.character(Sys.Date() - 365.25),
+                                          value = as.character(Sys.Date() - 30),
                                           min = as.Date("1970-01-01"),
                                           max = Sys.Date(),
                                           format = "yyyy-mm-dd",
                                           startview = "year"
                               ),
-                              #Range Widget with date maybe
+                              sliderInput("range", label = h3("Day Range"), min = 0, 
+                                          max = 365, value = 120 
+                              ),
                               numericInput("num", label = h3("Numeric Input"), value = 1000)
                             ),
                             mainPanel(
