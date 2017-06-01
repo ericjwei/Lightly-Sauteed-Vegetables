@@ -8,6 +8,7 @@ eventtype = list("Chemical Explosion" = "Chemical Explosion",
                  "Quarry Blast" = "Quarry Blast"
                  )
 
+
 scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitude by Source'),
                           sidebarLayout(
                             sidebarPanel(
@@ -21,16 +22,17 @@ scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitu
                                           format = "yyyy-mm-dd",
                                           startview = "year"
                               ),
-                              sliderInput("range", label = h3("Day Range"), min = 0, 
-                                          max = 365, value = 120 
+                              sliderInput("range", label = h3("Day Range"), min = 0,
+                                          max = 365, value = 120
                               ),
                               numericInput("num", label = h3("Numeric Input"), value = 1000)
                             ),
                             mainPanel(
                               plotlyOutput('scatter')
                             )
-                          )  
+                          )
 )
+
 bar.panel <- tabPanel('Bar', titlePanel('Earthquake Magnitude by Location'),
                           sidebarLayout(
                             sidebarPanel(
@@ -38,14 +40,14 @@ bar.panel <- tabPanel('Bar', titlePanel('Earthquake Magnitude by Location'),
                                            value = "Seattle"),
                               sliderInput("radius", label = h3("Radius"), min = 0,
                                            max = 500, value = 50),
-                              sliderInput("number", label = h3("Number of Earthquakes"), min = 0, 
+                              sliderInput("number", label = h3("Number of Earthquakes"), min = 0,
                                           max = 1000, value = 50)
                             ),
                             mainPanel(
                               plotlyOutput('bar')
                             )
-     
-                           )                      
+
+                           )
 )
 
 # Define UI for application that draws a histogram

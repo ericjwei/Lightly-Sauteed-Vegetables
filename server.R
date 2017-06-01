@@ -1,17 +1,15 @@
 library(shiny)
 library(plotly)
 library(dplyr)
+library(httr)
+library(jsonlite)
+library(anytime)
+library(RJSONIO)
 
 source('./scripts/TypeOfEvent.r')
 source('./scripts/Request.r')
 source('./scripts/FranGraph.r')
 
-
-base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" 
-var <- "&eventtype=explosion" 
-count <- "&limit=200"
-response <- GET(paste0(base.url, count)) 
-data <- fromJSON(content(response, "text"))$features %>% flatten()
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
