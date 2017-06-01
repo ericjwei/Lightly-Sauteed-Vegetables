@@ -1,7 +1,18 @@
 library(shiny)
 library(plotly)
 
-map.panel <- tabPanel('Map')
+map.panel <- tabPanel('Map', titlePanel('Map of Earthquakes'),
+                      sidebarLayout(
+                        sidebarPanel(
+                          sliderInput("magnitude", label = h3("Magnitude of Earthquake"),
+                                       min = -1, max = 7, value = 2)
+                        ),
+                        mainPanel(
+                          plotlyOutput('map')
+                        )
+                      )                      
+)
+                      
 
 eventtype = list("Chemical Explosion" = "Chemical Explosion",
                  "Earthquake*" = "Earthquake",
@@ -51,18 +62,18 @@ bar.panel <- tabPanel('Earthquake Magnitude by Location', titlePanel('Earthquake
 
                            )
 )
-doc.panel <- tabPanel('Documentation', titlePanel('Documentation'),
-                        sidebarLayout(
-                          mainPanel(
-                            
-                          )
-                        )
-)
+# doc.panel <- tabPanel('Documentation', titlePanel('Documentation'),
+#                         sidebarLayout(
+#                           mainPanel(
+#                             
+#                           )
+#                         )
+# )
 
 # Define UI for application that draws a histogram
 shinyUI(
   navbarPage(
     theme = shinythemes::shinytheme("sandstone"),
     'USGS Earthquake Monitoring', 
-    map.panel, scatter.panel, bar.panel, doc.panel))
-
+     map.panel, scatter.panel, bar.panel))
+  
