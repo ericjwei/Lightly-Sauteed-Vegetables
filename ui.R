@@ -1,13 +1,4 @@
-
 library(shiny)
-#"eventtypes":["acoustic noise","acoustic_noise","anthropogenic_event","building collapse","chemical explosion","chemical_explosion",
-#"earthquake","experimental explosion","explosion","ice quake",
-#"landslide","mine collapse","mine_collapse","mining explosion","mining_explosion","not reported",
-#"not_reported","nuclear explosion","nuclear_explosion","other event","other_event","quarry",
-#"quarry blast","quarry_blast","rock burst","rockslide","rock_burst","snow_avalanche","sonic boom","sonicboom","sonic_boom"]
-
-#To Do: include date range widget, display empty dataframe when no data, include location label
-
 map.panel <- tabPanel('Map')
 
 eventtype = list("Chemical Explosion" = "Chemical Explosion",
@@ -40,10 +31,22 @@ scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitu
                             )
                           )  
 )
-
-  
-bar.panel <- tabPanel('Bar')
-
+bar.panel <- tabPanel('Bar', titlePanel('Earthquake Magnitude by Location'),
+                          sidebarLayout(
+                            sidebarPanel(
+                              textInput("address", label = h3("Location"),
+                                           value = "Seattle"),
+                              sliderInput("radius", label = h3("Radius"), min = 0,
+                                           max = 500, value = 50),
+                              sliderInput("number", label = h3("Number of Earthquakes"), min = 0, 
+                                          max = 1000, value = 50)
+                            ),
+                            mainPanel(
+                              plotlyOutput('bar')
+                            )
+     
+                           )                      
+)
 
 # Define UI for application that draws a histogram
 shinyUI(
@@ -52,4 +55,3 @@ shinyUI(
     'USGS Earthquake Monitoring', 
     map.panel, scatter.panel, bar.panel))
 
-date <- as.Date("1970-01-01")
