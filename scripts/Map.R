@@ -1,9 +1,5 @@
 library(dplyr)
 library(plotly)
-# library("ggmap")
-# library(maptools)
-# library(maps)
-# library(mapproj)
 
 map <- function(magnitude = '') {
 print(magnitude)
