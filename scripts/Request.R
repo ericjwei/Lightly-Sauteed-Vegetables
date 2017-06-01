@@ -8,7 +8,6 @@ request <- function(type = '', start.date = '', range = '', limit = '') {
   options(scipen = 15, digits = 13)
   
   query <- 'earthquake'
-  type <- 'earthquake'
   if(type == 'Chemical Explosion') {
     query <- "chemical%20explosion"
   } else if(type == "Explosion") {
@@ -18,9 +17,6 @@ request <- function(type = '', start.date = '', range = '', limit = '') {
   } else if(type == "Quarry Blast") {
     query <- "quarry%20blast"
   }
-  start.date <- as.Date('2017-03-20')
-  range <- 30
-  limit <- 100
   base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
   var <- paste0("&eventtype=", query)
   end.date <- start.date + range  

@@ -1,21 +1,23 @@
 library(shiny)
+library(plotly)
+
 map.panel <- tabPanel('Map')
 
 eventtype = list("Chemical Explosion" = "Chemical Explosion",
-                 "Earthquake" = "Earthquake",
-                 "Explosion*" = "Explosion",
+                 "Earthquake*" = "Earthquake",
+                 "Explosion" = "Explosion",
                  "Ice Quake" = "Ice Quake",
                  "Quarry Blast" = "Quarry Blast"
                  )
 
 
-scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitude by Source'),
+scatter.panel <- tabPanel('Earthquake Magnitude by Source', titlePanel('Earthquake Magnitude by Source'),
                           sidebarLayout(
                             sidebarPanel(
                               radioButtons("type", label = h3("Source Type"),
                                            choices = eventtype, selected = "Earthquake"),
                               helpText(h5("*Large data points may result in longer plot times")),
-                              dateInput("startDate", label = h3("Start date of 30 day range"),
+                              dateInput("startDate", label = h3("Start Date"),
                                           value = as.character(Sys.Date() - 30),
                                           min = as.Date("1970-01-01"),
                                           max = Sys.Date(),
@@ -33,7 +35,7 @@ scatter.panel <- tabPanel('Earthquake by Source', titlePanel('Earthquake Magnitu
                           )
 )
 
-bar.panel <- tabPanel('Bar', titlePanel('Earthquake Magnitude by Location'),
+bar.panel <- tabPanel('Earthquake Magnitude by Location', titlePanel('Earthquake Magnitude by Location'),
                           sidebarLayout(
                             sidebarPanel(
                               textInput("address", label = h3("Location"),
@@ -49,11 +51,18 @@ bar.panel <- tabPanel('Bar', titlePanel('Earthquake Magnitude by Location'),
 
                            )
 )
+doc.panel <- tabPanel('Documentation', titlePanel('Documentation'),
+                        sidebarLayout(
+                          mainPanel(
+                            
+                          )
+                        )
+)
 
 # Define UI for application that draws a histogram
 shinyUI(
   navbarPage(
     theme = shinythemes::shinytheme("sandstone"),
     'USGS Earthquake Monitoring', 
-    map.panel, scatter.panel, bar.panel))
+    map.panel, scatter.panel, bar.panel, doc.panel))
 

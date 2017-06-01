@@ -1,9 +1,9 @@
 library(shiny)
 library(plotly)
 
-source('./scripts/TypeOfEvent.r')
-source('./scripts/Request.r')
-source('./scripts/FranGraph.r')
+source('./scripts/TypeOfEvent.R')
+source('./scripts/Request.R')
+source('./scripts/FranGraph.R')
 
 
 # Define server logic required to draw a histogram

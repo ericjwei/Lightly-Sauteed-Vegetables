@@ -3,6 +3,8 @@ title:
 account: ericjwei
 server: shinyapps.io
 appId: 182854
-bundleId: 837236
+bundleId: 848562
 url: https://ericjwei.shinyapps.io/lightly-sauteed-vegetables/
-when: 1495523985.80675
+when: 1496310761.07315
+asMultiple: FALSE
+asStatic: FALSE
