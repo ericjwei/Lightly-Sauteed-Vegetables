@@ -25,15 +25,10 @@ request <- function(type = '', start.date = '', range = '', limit = '') {
   var <- paste0("&eventtype=", query)
   end.date <- start.date + range  
   start.date <- paste0("&starttime=", start.date)
-print(start.date)
   end.date <- paste0("&endtime=", end.date)
-print(end.date)
   count <- paste0("&limit=", limit)
-print(count)  
   url <- paste0(base.url, var, start.date, end.date, count)
   response <- GET(url)
-print(url)
-
   data <- fromJSON(content(response, "text"))$features %>% flatten()
   data$properties.time <- lapply(data$properties.time, function(x) anytime(x / 1000))
   data$properties.updated <- lapply(data$properties.updated, function(x) anytime(x / 1000))

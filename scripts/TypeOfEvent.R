@@ -1,6 +1,6 @@
-# library(plotly)
-# library(dplyr)
-# library(anytime)
+library(plotly)
+library(dplyr)
+library(anytime)
 
 BuildScatter <- function(data, type = '', date = '', range = '', limit = '') {
 

@@ -1,10 +1,5 @@
 library(shiny)
 library(plotly)
-library(dplyr)
-library(httr)
-library(jsonlite)
-library(anytime)
-library(RJSONIO)
 
 source('./scripts/TypeOfEvent.r')
 source('./scripts/Request.r')

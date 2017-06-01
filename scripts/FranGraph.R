@@ -1,11 +1,8 @@
 library(plotly)
 library(shiny)
 library(dplyr)
-library(RJSONIO)
 library(jsonlite)
 library(httr)
-
-
 
 
 latitude <- function(address) {
@@ -44,15 +41,9 @@ requestTest <- function(address, radius, number) {
   response <- GET(paste0(base.url, var, radius, count))
   info <- fromJSON(content(response, "text"))$features %>% flatten
   data <- as.data.frame(info)
-  #View(info.df)
+
   return(data)
 }
-#address <- "Seattle"
-#data <- requestTest(address)
-#View(data)
-
-#data.df <- data.frame(do.call('rbind', strsplit(as.character(data$properties.place),'of',fixed=TRUE)))
-#within(data, data.df <- data.frame(do.call('rbind', strsplit(as.character(data$properties.place),'of',fixed=TRUE)))) %>% View()
 
 BuildBarGraph <- function(address, radius, number) {
 data <- requestTest(address, radius, number)
