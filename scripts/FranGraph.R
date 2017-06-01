@@ -1,13 +1,9 @@
 library(plotly)
 library(shiny)
-library(ggplot2)
 library(dplyr)
 library(RJSONIO)
 library(jsonlite)
 library(httr)
-library(tidyr)
-
-
 
 latitude <- function(address) {
   url <- "http://maps.google.com/maps/api/geocode/json?address="
@@ -60,12 +56,10 @@ data <- requestTest(address, radius, number)
 
 xAxis <- data$properties.place
 yAxis <- data$properties.mag
-text <- data$properties.title
-
+text <- 
 m <- list(
   b = 400 
 )
-
 p <- plot_ly(data, x = ~xAxis, y = ~yAxis, type = 'bar', text = text,
              marker = list(color = 'rgb(158,202,225)',
                            line = list(color = 'rgb(8,48,107)', width = 1.5))) %>%
