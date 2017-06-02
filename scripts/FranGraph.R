@@ -30,14 +30,13 @@ longitude <- function(address) {
 
 requestTest <- function(address, radius, number) {
   base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&starttime=2010-01-01"
-  var <- paste0("&latitude=", latitude(address), "&longitude=", longitude(address)) 
+  var <- paste0("&latitude=", latitude(address), "&longitude=", longitude(address))
   radius <- paste0("&maxradiuskm=", radius)
   count <- paste0("&limit=", number)
-  
+
   response <- GET(paste0(base.url, var, radius, count))
   info <- fromJSON(content(response, "text"))$features %>% flatten
   data <- as.data.frame(info)
-  #View(data)
   return(data)
 }
 

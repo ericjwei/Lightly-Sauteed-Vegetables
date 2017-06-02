@@ -7,6 +7,7 @@ request <- function(type = '', start.date = '', range = '', limit = '') {
   options(digits.secs = 3)
   options(scipen = 15, digits = 13)
   
+  #Format for the title of the graph
   query <- 'earthquake'
   if(type == 'Chemical Explosion') {
     query <- "chemical%20explosion"
@@ -17,9 +18,11 @@ request <- function(type = '', start.date = '', range = '', limit = '') {
   } else if(type == "Quarry Blast") {
     query <- "quarry%20blast"
   }
+  
+  #Getting api data
   base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
   var <- paste0("&eventtype=", query)
-  end.date <- start.date + range  
+  end.date <- start.date + range
   start.date <- paste0("&starttime=", start.date)
   end.date <- paste0("&endtime=", end.date)
   count <- paste0("&limit=", limit)
