@@ -1,21 +1,22 @@
 library(dplyr)
 library(plotly)
+library(foreign)
 
 map <- function(magnitude = '') {
-print(magnitude)
-  base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" 
+
+  base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
   var <- "&eventtype=earthquake"
   count <- "&limit=100"
   magnitude <- paste0("&minmagnitude=", magnitude)
   response <- GET(paste0(base.url, var, count, magnitude))
-print(paste0(base.url, var, count, magnitude))
-  data <- fromJSON(content(response, "text"))$features %>% flatten() 
-  
+
+  data <- fromJSON(content(response, "text"))$features %>% flatten()
+
   geom <- data$geometry.coordinates
   my.matrix <- do.call("rbind", geom)
   df <- as.data.frame(my.matrix, stringsAsFactors = FALSE, col.names = c("longitude", "latitude", "depth"))
   merged.data <- merge(data, df)
-  
+# data <- dget(file = "info")   
   g <- list(
     scope = 'world',
     projection = list(type = 'equirectangular'),
@@ -35,6 +36,10 @@ print(paste0(base.url, var, count, magnitude))
     layout(title = 'Earthquake', geo = g)
   return(p)
 }
-
-
-
+# write.dta(merged.data, file = "data.csv")
+# 
+# save(merged.data, file="data.rda")
+# # 
+# info <- load("data.rda")
+# 
+# hi <- dget(file='info')

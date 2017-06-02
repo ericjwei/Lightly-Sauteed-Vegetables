@@ -3,7 +3,6 @@ library(dplyr)
 library(anytime)
 
 BuildScatter <- function(data, type = '', date = '', range = '', limit = '') {
-
   plot <- plot_ly(data = data, type = 'scatter', mode = 'markers', x = ~properties.time, y = ~properties.mag,
                   hoverinfo = 'text',
                   text = ~paste(paste("Location:", properties.place), paste("Time:", anytime(as.integer(properties.time))), paste("Magnitude:", properties.mag), sep = "<br />")) %>% 

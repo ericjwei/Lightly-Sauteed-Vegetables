@@ -108,5 +108,5 @@ shinyUI(
   navbarPage(
     theme = shinythemes::shinytheme("sandstone"),
     'USGS Earthquake Monitoring', 
-     map.panel, scatter.panel, bar.panel))
+     map.panel, scatter.panel, bar.panel, documentation.panel))
   
