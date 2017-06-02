@@ -2,6 +2,7 @@ library(plotly)
 library(dplyr)
 library(anytime)
 
+#Plot the scatter graph using the requested data
 BuildScatter <- function(data, type = '', date = '', range = '', limit = '') {
   plot <- plot_ly(data = data, type = 'scatter', mode = 'markers', x = ~properties.time, y = ~properties.mag,
                   hoverinfo = 'text',

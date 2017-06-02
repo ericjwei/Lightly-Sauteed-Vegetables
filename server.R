@@ -10,12 +10,10 @@ source('./scripts/Map.R')
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   output$map <- renderPlotly({
-    print(input$magnitude)
     return(map(input$magnitude))
   }) 
   output$scatter <- renderPlotly({
-     data <- request(input$type, input$startDate, input$range, input$num)
-     #validate(need(is.data.frame(data), "No data in this time range"))
+     data <- request(input$type, input$startDate, input$range, input$num) #requested data from api
      return(BuildScatter(data, input$type, input$startDate, input$range, input$num))
   })
   output$bar <- renderPlotly({
