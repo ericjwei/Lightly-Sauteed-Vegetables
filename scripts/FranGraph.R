@@ -3,6 +3,7 @@ library(shiny)
 library(dplyr)
 library(jsonlite)
 library(httr)
+library(anytime)
 
 
 latitude <- function(address) {
@@ -27,11 +28,6 @@ longitude <- function(address) {
   round(x, digits = 4)
 }
 
-coordinates <- function(address) {
-  combined <- c(latitude(address), longitude(address))
-  return(combined)
-}
-
 requestTest <- function(address, radius, number) {
   base.url <- "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&starttime=2010-01-01"
   var <- paste0("&latitude=", latitude(address), "&longitude=", longitude(address)) 
@@ -41,7 +37,7 @@ requestTest <- function(address, radius, number) {
   response <- GET(paste0(base.url, var, radius, count))
   info <- fromJSON(content(response, "text"))$features %>% flatten
   data <- as.data.frame(info)
-
+  #View(data)
   return(data)
 }
 
@@ -50,14 +46,14 @@ data <- requestTest(address, radius, number)
 
 xAxis <- data$properties.place
 yAxis <- data$properties.mag
-text <- data$properties.title
+text <- paste(paste("Location:", data$properties.place), paste("Magnitude:", data$properties.mag), sep = "<br />")
 
 m <- list(
   b = 400 
 )
 
-p <- plot_ly(data, x = ~xAxis, y = ~yAxis, type = 'bar', text = text,
-             marker = list(color = 'rgb(158,202,225)',
+p <- plot_ly(data, x = ~xAxis, y = ~yAxis, type = 'bar', text = text, color = ~properties.mag,
+             marker = list(
                            line = list(color = 'rgb(8,48,107)', width = 1.5))) %>%
   layout(title = paste("Earthquakes near", address),
          xaxis = list(title = "Place", tickangle = 90, face = "bold"),
